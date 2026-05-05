@@ -1,0 +1,164 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "repeated": "cr:repeated",
+    "sc": "https://schema.org/",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "STRIDE-Bench-maps",
+  "description": "Per-scene map data for STRIDE-Bench: obstacle rectangles (originally stored as map.npz with key 'obstacles', shape (N, 4)) and a rendered obstacle PNG, packed into a single Parquet table with one row per scene.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "version": "1.0.0",
+  "datePublished": "2026-04-20",
+  "keywords": [
+    "crowd-simulation",
+    "trajectory-evaluation",
+    "pedestrian-dynamics",
+    "benchmark",
+    "behavioral-evaluation"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Anonymous (NeurIPS 2026 D&B submission, double-blind)"
+  },
+  "rai:dataCollectionType": [
+    "Synthetic",
+    "Simulation"
+  ],
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal data, no images of identifiable individuals, and no real pedestrian tracks. All scenes are synthetic.",
+  "rai:hasSyntheticData": true,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "maps-parquet",
+      "name": "maps.parquet",
+      "description": "Parquet table of per-scene map data: obstacle rectangles (N x 4 float64) and a rendered obstacle PNG. One row per scene.",
+      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/maps.parquet",
+      "encodingFormat": "application/x-parquet",
+      "sha256": "1a15c3423dba429e9c805c05eb4afb42525efacce7931dd1991a05664cc0c6c4",
+      "contentSize": "7735446 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "maps",
+      "name": "maps",
+      "description": "One record per scene; obstacles array + rendered obstacle PNG.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "maps/scene_id",
+          "name": "scene_id",
+          "description": "scene_id (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "maps-parquet"
+            },
+            "extract": {
+              "column": "scene_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "maps/obstacles_key",
+          "name": "obstacles_key",
+          "description": "obstacles_key (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "maps-parquet"
+            },
+            "extract": {
+              "column": "obstacles_key"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "maps/obstacles",
+          "name": "obstacles",
+          "description": "obstacles (parquet type: list<element: list<element: double>>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "maps-parquet"
+            },
+            "extract": {
+              "column": "obstacles"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "maps/obstacles_shape",
+          "name": "obstacles_shape",
+          "description": "obstacles_shape (parquet type: list<element: int64>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "maps-parquet"
+            },
+            "extract": {
+              "column": "obstacles_shape"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "maps/obstacle_map_png",
+          "name": "obstacle_map_png",
+          "description": "obstacle_map_png (parquet type: binary)",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileObject": {
+              "@id": "maps-parquet"
+            },
+            "extract": {
+              "column": "obstacle_map_png"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

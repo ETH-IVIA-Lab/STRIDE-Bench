@@ -1,0 +1,239 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "repeated": "cr:repeated",
+    "sc": "https://schema.org/",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "STRIDE-Bench-benchmark",
+  "description": "Behavioral evaluation specs for the STRIDE-Bench crowd trajectory benchmark. Each row is one scene with a natural-language scenario description and a decomposition into behavioral evaluation questions (Trajectory Question Answering / TQA), each grounded in one or more measurement functions with expected value ranges and tolerances.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "version": "1.0.0",
+  "datePublished": "2026-04-20",
+  "keywords": [
+    "crowd-simulation",
+    "trajectory-evaluation",
+    "pedestrian-dynamics",
+    "benchmark",
+    "behavioral-evaluation"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Anonymous (NeurIPS 2026 D&B submission, double-blind)"
+  },
+  "rai:dataCollectionType": [
+    "Synthetic",
+    "Simulation"
+  ],
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal data, no images of identifiable individuals, and no real pedestrian tracks. All scenes are synthetic.",
+  "rai:hasSyntheticData": true,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "benchmark-jsonl",
+      "name": "benchmark.jsonl",
+      "description": "JSON Lines: one scene per line. Each line contains the scene's scenario description, behavioral category, decomposition reasoning, and a list of behavioral evaluation questions with measurement specs.",
+      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/benchmark.jsonl",
+      "encodingFormat": "application/jsonlines",
+      "sha256": "8b44947d2e0281edfd2274ec403b7087af18e8ec1a04ffeb22837f1c90d52800",
+      "contentSize": "7228940 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "benchmark",
+      "name": "benchmark",
+      "description": "One record per scene (one JSONL line).",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/source_scene_id",
+          "name": "source_scene_id",
+          "description": "Unique scene identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.source_scene_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/scenario_id",
+          "name": "scenario_id",
+          "description": "Reference to the physical scenario / environment.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.scenario_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/description",
+          "name": "description",
+          "description": "Natural-language description of the crowd behavior scenario.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.description"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/category",
+          "name": "category",
+          "description": "Behavioral category label (one of 11).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/location",
+          "name": "location",
+          "description": "Real-world location name.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.location"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/decomposition_reasoning",
+          "name": "decomposition_reasoning",
+          "description": "LLM reasoning for description -> behavioral properties.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.decomposition_reasoning"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/questions",
+          "name": "questions",
+          "description": "Nested list of {id, question, measurements:[{function, params, expected_result, expected_result_reasoning, delta_value}]}.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.questions"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/_model",
+          "name": "_model",
+          "description": "LLM used to generate the benchmark (carried per-row).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$._model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "benchmark/_n_scenes",
+          "name": "_n_scenes",
+          "description": "Total scenes in the dataset (carried per-row).",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$._n_scenes"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataLimitations": "This benchmark does not contain any real-world events.",
+  "rai:dataBiases": "There's a selection bias that we sample rarer scenarios such as Violent and Escaping, as they are underrepresented in the real world.",
+  "rai:dataUseCases": "This data is used for evaluating the alignment of text-to-trajectory generation. The input is the generated trajectory coordinates timeseries dataset.",
+  "rai:dataSocialImpact": "As this is to evaluate pedestrian trajectory generation, it would help in urban planning, venue safety auditing, and emergency preparedness. There's no obvious risk in using it.",
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q4929239"
+      },
+      "prov:label": "Benchmark Generation",
+      "sc:description": "We curate 113 location maps of high-traffic public venues, including major tourist destinations, stadiums, university campuses, and transit hubs. These venues routinely host dense crowds during events. The maps are acquired through the Google Maps API and converted into obstacle representations through a three-stage pipeline: semantic segmentation based on the official Google Maps colormap, polygon approximation of segmented obstacle regions, and rasterization to a fixed $301.7~\\text{m} \\times 282.8~\\text{m}$ canvas. Figure~\\ref{fig:real-world-obstacle} illustrates this map-processing pipeline.\n\\textbf{Scenario descriptions.}\nWe adopt Berlonghi's typology of 11 crowd categories~\\cite{berlonghi1995understanding}. For each category, we prompt GPT-5.1 with a structured template that elicits: (i) a natural-language scenario description, (ii) candidate exits and event-center coordinates in the map pixel grid, and (iii) the initial crowd size and spatial distribution. Fields (ii) and (iii) provide a common initialization across models, allowing us to isolate context-conditioned behavior from setup variability. Prompts are provided in Appendix~\\ref{app:scenario-corpus}.\n\\textbf{Filtering and stratified sampling.}\nWe remove scenarios with insufficient agent density, exits or event centers that fall on obstacles, and near-duplicate descriptions. Obstacle conflicts are a known failure mode of polygon approximation, while duplicates are identified by cosine-similarity filtering over sentence embeddings. We also conduct a manual pass to remove residual map-realism failures.\nFrom the filtered pool, we perform \\emph{stratified oversampling} toward safety-critical categories, such as Escaping, Violent, and Dense. These categories are systematically underrepresented in real-world trajectory datasets~\\cite{pellegrini2009you, lerner2007crowds, robicquet2016learning}, since such dynamics cannot be ethically staged. They are also the regimes where context-conditioned generation has the highest applied value, including urban planning, venue safety auditing, and emergency preparedness. For each retained scenario, we prompt GPT-5.2 to generate the behavioral questions, measurements, and expected answers. Prompts are provided in Appendix~\\ref{app:qa-generation}.\n\\textbf{Calibration.}\nTo improve the human alignment of expected answers, we incorporate real-world crowd reference data into our human-trajectory knowledge base, \\emph{TrajFacts}. These references include events such as the Love Parade~\\cite{zhao2020assessing, krausz2012loveparade} and the Itaewon crowd crush~\\cite{hwang2025virtual}. \\emph{TrajFacts} provides reference values that help the model produce more realistic expected-answer ranges. Appendix~\\ref{app:gt-library} gives additional details.\nIn total, STRIDE-Bench contains 936 scenarios, 6,633 questions, and 11,696 measurements. Figure~\\ref{fig:benchmark-stats} shows the heatmap of DMT function usage across crowd categories.\n\\textbf{Usage.}\nSTRIDE supports two evaluation modes. In \\emph{benchmark mode}, evaluation uses the released scenarios together with cached questions and expected-answer ranges. The final score is therefore produced entirely by deterministic function calls, with no LLM required at scoring time. In \\emph{open mode}, an LLM agent generates the question set on the fly from a user-supplied scenario description, enabling evaluation beyond the released benchmark."
+    }
+  ]
+}

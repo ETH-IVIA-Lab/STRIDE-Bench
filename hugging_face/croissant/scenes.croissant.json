@@ -1,0 +1,449 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "repeated": "cr:repeated",
+    "sc": "https://schema.org/",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "STRIDE-Bench-scenes",
+  "description": "Crowd-simulation scenes for STRIDE-Bench: scenario metadata, initial agent states (position/velocity/goal/radius), group structure, and per-scene expected behavioral ranges. Distributed as a single Parquet table with one row per scene; nested fields whose runtime types vary (e.g. goal_location_*) are stored as JSON-encoded strings.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "version": "1.0.0",
+  "datePublished": "2026-04-20",
+  "keywords": [
+    "crowd-simulation",
+    "trajectory-evaluation",
+    "pedestrian-dynamics",
+    "benchmark",
+    "behavioral-evaluation"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Anonymous (NeurIPS 2026 D&B submission, double-blind)"
+  },
+  "rai:dataCollectionType": [
+    "Synthetic",
+    "Simulation"
+  ],
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal data, no images of identifiable individuals, and no real pedestrian tracks. All scenes are synthetic.",
+  "rai:hasSyntheticData": true,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes-parquet",
+      "name": "scenes.parquet",
+      "description": "Parquet table of crowd-simulation scenes: scenario metadata, initial agent states, group structure, goal locations, and expected behavioral ranges. One row per scene.",
+      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/scenes.parquet",
+      "encodingFormat": "application/x-parquet",
+      "sha256": "b73edd5a977fc7525330a83ba8a61218953933febdd7de66b27116ff68bd835f",
+      "contentSize": "5641744 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes",
+      "name": "scenes",
+      "description": "One record per scene; columns derived from the Parquet schema.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/scene_id",
+          "name": "scene_id",
+          "description": "scene_id (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "scene_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/scene_index",
+          "name": "scene_index",
+          "description": "scene_index (parquet type: int64)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "scene_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/scenario",
+          "name": "scenario",
+          "description": "scenario (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "scenario"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/category",
+          "name": "category",
+          "description": "category (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/crowd_size_label",
+          "name": "crowd_size_label",
+          "description": "crowd_size_label (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "crowd_size_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/crowd_size",
+          "name": "crowd_size",
+          "description": "crowd_size (parquet type: int64)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "crowd_size"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/ungrouped_agents",
+          "name": "ungrouped_agents",
+          "description": "ungrouped_agents (parquet type: int64)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "ungrouped_agents"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/event_center_px",
+          "name": "event_center_px",
+          "description": "event_center_px (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "event_center_px"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/event_center_m",
+          "name": "event_center_m",
+          "description": "event_center_m (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "event_center_m"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/goal_location_raw",
+          "name": "goal_location_raw",
+          "description": "goal_location_raw (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "goal_location_raw"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/goals_px",
+          "name": "goals_px",
+          "description": "goals_px (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "goals_px"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/goals_m",
+          "name": "goals_m",
+          "description": "goals_m (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "goals_m"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/initial_state",
+          "name": "initial_state",
+          "description": "initial_state (parquet type: list<element: list<element: double>>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "initial_state"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/groups",
+          "name": "groups",
+          "description": "groups (parquet type: list<element: list<element: int64>>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "groups"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/towards_event",
+          "name": "towards_event",
+          "description": "towards_event (parquet type: bool)",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "towards_event"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/assets",
+          "name": "assets",
+          "description": "assets (parquet type: struct<anchored_obstacles: string, homography: string, obstacle_png: string>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "assets"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/desired_speed_range",
+          "name": "desired_speed_range",
+          "description": "desired_speed_range (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "desired_speed_range"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/collision_rate_early",
+          "name": "collision_rate_early",
+          "description": "collision_rate_early (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "collision_rate_early"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/collision_rate_late",
+          "name": "collision_rate_late",
+          "description": "collision_rate_late (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "collision_rate_late"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/towards_goal",
+          "name": "towards_goal",
+          "description": "towards_goal (parquet type: bool)",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "towards_goal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/relavance_to_event_range",
+          "name": "relavance_to_event_range",
+          "description": "relavance_to_event_range (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "relavance_to_event_range"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/lingering_fraction_range",
+          "name": "lingering_fraction_range",
+          "description": "lingering_fraction_range (parquet type: list<element: double>)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "lingering_fraction_range"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/goal_location_px",
+          "name": "goal_location_px",
+          "description": "goal_location_px (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "goal_location_px"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/goal_location_m",
+          "name": "goal_location_m",
+          "description": "goal_location_m (parquet type: string)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "scenes-parquet"
+            },
+            "extract": {
+              "column": "goal_location_m"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

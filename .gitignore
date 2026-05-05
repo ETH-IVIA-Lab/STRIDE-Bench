@@ -3,3 +3,6 @@ maps/*
 scenes/*
 !scenes/.gitkeep                                                                                                 
 .DS_Store    
+benchmark/benchmark.jsonl
+hugging_face/data/*
+!hugging_face/data/.gitkeep
