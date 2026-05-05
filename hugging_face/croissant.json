@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "wd:P1628",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "samplingRate": "cr:samplingRate",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "wd": "https://www.wikidata.org/wiki/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "trajQA-benchmark",
+  "description": "trajQA-Bench is an evaluation benchmark for context-consistent crowd trajectory generation. Rather than comparing trajectories point-by-point, it measures whether generated trajectories exhibit behaviors consistent with a given natural-language scenario description, by decomposing each description into measurable behavioral questions (Trajectory Question Answering / TQA). The benchmark spans 1,142 scenes across 11 behavioral categories (Escaping, Violent, Demonstrator, Dense, Aggressive, Rushing, Expressive, Participatory, Cohesive, Ambulatory, Disability) and 30 real-world locations, with 9,706 questions and 15,056 measurement specs computed via 22 evaluation functions covering speed, density, spatial structure, flow, path, and behavioral dynamics.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "version": "1.0.0",
+  "datePublished": "2026-04-20",
+  "keywords": [
+    "crowd-simulation",
+    "trajectory-evaluation",
+    "pedestrian-dynamics",
+    "benchmark",
+    "behavioral-evaluation",
+    "trajectory-question-answering",
+    "context-consistency"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Anonymous (NeurIPS 2026 D&B submission, double-blind)"
+  },
+  "citeAs": "@misc{trajqabench2026,\n  title  = {TrajQA-Bench: Trajectory Question Answering for Context-Consistent Crowd Trajectory Generation},\n  author = {Anonymous},\n  year   = {2026},\n  note   = {NeurIPS 2026 Datasets and Benchmarks submission. Dataset: https://huggingface.co/datasets/sweetspot000/tqa-benchmark}\n}",
+  "rai:dataCollection": "Scenes were synthetically constructed: an LLM authored natural-language crowd behavior descriptions, then translated them into Social Force Model (SFM) parameters to simulate physically-grounded multi-agent trajectories. Real-world location geometry (30 locations) was used as scene context but simplified into obstacle maps. No real pedestrian trajectories or personal data were collected.",
+  "rai:dataCollectionType": [
+    "Synthetic",
+    "Simulation"
+  ],
+  "rai:dataCollectionRawData": "Inputs to the pipeline: (a) LLM-generated behavior descriptions, (b) SFM parameters derived from those descriptions, (c) simplified real-world location geometries used as scene scaffolding.",
+  "rai:annotationsPerItem": "Each scene is annotated by an LLM with: a category label (1 of 11), a decomposition of the description into ~7-9 behavioral questions, and per-question measurement specs (target function, parameters, expected value range, tolerance delta).",
+  "rai:annotationDemographics": "Annotations are LLM-generated, not produced by human annotators.",
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal data, no images of identifiable individuals, and no real pedestrian tracks. All scenes are synthetic.",
+  "rai:dataBiases": "Behavior descriptions and decomposition specs were authored by a single LLM, which introduces model-specific biases in (a) which behavioral aspects are deemed salient for a given description and (b) the expected value ranges. Location coverage is biased toward urban/transit settings. The 11 behavioral categories are imbalanced (Escaping: 158, Disability: 36).",
+  "rai:dataLimitations": "Expected value ranges are LLM-estimated and may not perfectly match all real-world instances of a described scenario. Aggregate behavioral statistics are evaluated, not individual trajectory plausibility. Simplified location geometry omits fine-grained obstacles.",
+  "rai:dataUseCases": "Intended uses: (1) ranking crowd trajectory generation models by behavioral context-consistency, (2) per-category analysis of model strengths/weaknesses, (3) framing trajectory evaluation as a question-answering task. Out-of-scope: training crowd generators (the benchmark is for evaluation only); deployment of any generator-evaluator pair to real-world safety-critical systems without further validation.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "benchmark-file",
+      "name": "benchmark_norm.json",
+      "description": "Single JSON file containing all benchmark scenes, questions, and measurement specs.",
+      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/benchmark_norm.json",
+      "encodingFormat": "application/json",
+      "sha256": "44c7bad17ee1783c2b25d89531732c665208669d6532f0f6a7999da74f42e144",
+      "contentSize": "7203406 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes",
+      "name": "scenes",
+      "description": "One record per crowd-behavior scene.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/source_scene_id",
+          "name": "source_scene_id",
+          "description": "Unique scene identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].source_scene_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/scenario_id",
+          "name": "scenario_id",
+          "description": "Reference to the physical scenario / environment.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].scenario_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/description",
+          "name": "description",
+          "description": "Natural-language description of the crowd behavior scenario.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].description"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/category",
+          "name": "category",
+          "description": "Behavioral category label (one of 11: Escaping, Violent, Demonstrator, Dense, Aggressive, Rushing, Expressive, Participatory, Cohesive, Ambulatory, Disability).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/location",
+          "name": "location",
+          "description": "Real-world location name.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].location"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/decomposition_reasoning",
+          "name": "decomposition_reasoning",
+          "description": "LLM reasoning for how the description maps to measurable behavioral properties.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].decomposition_reasoning"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes/questions",
+          "name": "questions",
+          "description": "List of behavioral evaluation questions for this scene. Each question has an id, natural-language text, and one or more measurement specs (function, params, expected_result range, delta_value tolerance). Consumers parse this nested structure directly.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-file"
+            },
+            "extract": {
+              "jsonPath": "$.scenes[*].questions"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataSocialImpact": "High-fidelity crowd simulation has plausible dual-use\nimplications, including informing crowd-control tactics, predictive policing,\nor surveillance pipelines that anticipate protester behavior. Our benchmark\ndoes not introduce new generative capability; it evaluates capability that\nalready exists in the literature. Nevertheless, releasing standardized\nbehavioral specifications for categories such as Violent and\nDemonstrator could, in principle, reduce the cost of training models\ntailored to such applications. We mitigate this through a license that\nexplicitly prohibits use for military operations, law-enforcement crowd\ncontrol, and population-level surveillance, and through a gated-access\nregistration that records the intended research use of the dataset.",
+  "rai:hasSyntheticData": true,
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q4929239"
+      },
+      "prov:label": "QA Generation",
+      "sc:description": "For each scenario, we prompt GPT-5.2 with the scenario description, the function library, and the VRDST protocol, which guides decomposition along the target dimensions. The model returns at least 5 evaluation questions since our protocol has 5 dimensions, each grounded at least one functions and paired with an expected-answer specification (a numerical range) over each function's output. To support traceability, we also require a justification for every decomposition and function choice. Appendix~\\ref{app:qa-generation} contains the full prompt used to generate the benchmark. To harden discrimination on a near-universal behavioral channel, we intentionally tighten the expected answer ranges for speed-related functions, which appear in nearly all scenarios and for which modern LLMs already share strong priors. This yields 10,919 questions and 15,268 measurements across the\n1,286 scenarios"
+    }
+  ]
+}
