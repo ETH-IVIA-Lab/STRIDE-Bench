@@ -1,3 +1,5 @@
-maps
-scenes
-.DS_Store
+maps/*                                                                                                           
+!maps/.gitkeep                                                                                                   
+scenes/*
+!scenes/.gitkeep                                                                                                 
+.DS_Store    
