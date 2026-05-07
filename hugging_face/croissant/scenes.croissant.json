@@ -44,7 +44,7 @@
   "description": "Crowd-simulation scenes for STRIDE-Bench: scenario metadata, initial agent states (position/velocity/goal/radius), group structure, and per-scene expected behavioral ranges. Distributed as a single Parquet table with one row per scene; nested fields whose runtime types vary (e.g. goal_location_*) are stored as JSON-encoded strings.",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "license": "https://choosealicense.com/licenses/mit/",
-  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "url": "https://huggingface.co/datasets/ 0/ stride-benchmark",
   "version": "1.0.0",
   "datePublished": "2026-04-20",
   "keywords": [
@@ -70,7 +70,7 @@
       "@id": "scenes-parquet",
       "name": "scenes.parquet",
       "description": "Parquet table of crowd-simulation scenes: scenario metadata, initial agent states, group structure, goal locations, and expected behavioral ranges. One row per scene.",
-      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/scenes.parquet",
+      "contentUrl": "https://huggingface.co/datasets/ 0/ stride-benchmark/resolve/main/scenes.parquet",
       "encodingFormat": "application/x-parquet",
       "sha256": "b73edd5a977fc7525330a83ba8a61218953933febdd7de66b27116ff68bd835f",
       "contentSize": "5641744 B"

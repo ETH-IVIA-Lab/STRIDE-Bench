@@ -4,16 +4,16 @@ Per model this script:
   1. reads each scene trajectory file
   2. loads the shared benchmark.json
   3. computes local expected-result benchmark scores
-  4. runs the TQA analysis and saves plots/CSVs in a dedicated result folder
+  4. runs the  stride analysis and saves plots/CSVs in a dedicated result folder
 
 Outputs live under:
   eval/results/all_in_one/
     logs/
     <model_name>_eval_result/
       scene_eval/<scene_id>/benchmark_eval_local.json
-      tqa_scores.csv
-      tqa_by_category.csv
-      tqa_summary.json
+       stride_scores.csv
+       stride_by_category.csv
+       stride_summary.json
       *.png
     overall_results.csv
     overall_results.json
@@ -61,7 +61,7 @@ sys.path.insert(0, str(EVAL_DIR))
 sys.path.insert(0, str(RESULTS_MODULE_DIR))
 
 import benchmark_eval  # noqa: E402
-from analyze_tqa import run_analysis  # noqa: E402
+from analyze_ stride import run_analysis  # noqa: E402
 
 
 @dataclass(frozen=True)
@@ -202,15 +202,15 @@ def aggregate_scene_eval_dir(scene_eval_root: Path) -> dict:
                 "scene_id": path.parent.name,
                 "category": report.get("category", "unknown"),
                 "location": report.get("location", "unknown"),
-                "tqa_score_by_expected_result": report.get("tqa_score_by_expected_result"),
+                " stride_score_by_expected_result": report.get(" stride_score_by_expected_result"),
                 "n_questions": len(scored),
             }
         )
 
     scene_scores = [
-        row["tqa_score_by_expected_result"]
+        row[" stride_score_by_expected_result"]
         for row in per_scene
-        if row["tqa_score_by_expected_result"] is not None
+        if row[" stride_score_by_expected_result"] is not None
     ]
     return {
         "metric": "benchmark local expected-result score",
@@ -410,7 +410,7 @@ def plot_model_comparison(results_root: Path, rows: list[dict]) -> Path | None:
     )
     ax.set_xticks(x)
     ax.set_xticklabels(plot_df["model"], rotation=20, ha="right")
-    ax.set_ylabel("Mean scene TQA score ± std")
+    ax.set_ylabel("Mean scene  stride score ± std")
     ax.set_ylim(0, 1.05)
     ax.set_title("Benchmark Result Comparison Across Models")
     for idx, row in plot_df.reset_index(drop=True).iterrows():

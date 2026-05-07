@@ -454,7 +454,7 @@ def evaluate_scene(
         ),
         "decomposition_reasoning": entry.get("decomposition_reasoning", ""),
         "questions": questions,
-        "tqa_score_by_expected_result": (
+        " stride_score_by_expected_result": (
             round(sum(scored) / len(scored), 4) if scored else None
         ),
     }
@@ -501,7 +501,7 @@ def aggregate_local_results(
         per_scene.append({
             "scene_id": os.path.basename(os.path.dirname(path)),
             "category": report.get("category", "unknown"),
-            "tqa_score_by_expected_result": report.get("tqa_score_by_expected_result"),
+            " stride_score_by_expected_result": report.get(" stride_score_by_expected_result"),
             "n_questions": len(scored),
         })
 
@@ -603,8 +603,8 @@ def main():
             output_root=output_root,
             output_suffix=args.output_suffix,
         )
-        score = report.get("tqa_score_by_expected_result")
-        score_str = f" tqa_score_by_expected_result={score}" if score is not None else ""
+        score = report.get(" stride_score_by_expected_result")
+        score_str = f"  stride_score_by_expected_result={score}" if score is not None else ""
         print(f"{scene_id} -> {path}{score_str}")
 
 

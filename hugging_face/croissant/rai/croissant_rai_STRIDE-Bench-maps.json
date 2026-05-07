@@ -45,7 +45,7 @@
   "description": "Per-scene map data for STRIDE-Bench: obstacle rectangles (originally stored as map.npz with key 'obstacles', shape (N, 4)) and a rendered obstacle PNG, packed into a single Parquet table with one row per scene.",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "license": "https://choosealicense.com/licenses/mit/",
-  "url": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark",
+  "url": "https://huggingface.co/datasets/anonymous1ads34/STRIDE-Bench",
   "version": "1.0.0",
   "datePublished": "2026-04-20",
   "keywords": [
@@ -71,7 +71,7 @@
       "@id": "maps-parquet",
       "name": "maps.parquet",
       "description": "Parquet table of per-scene map data: obstacle rectangles (N x 4 float64) and a rendered obstacle PNG. One row per scene.",
-      "contentUrl": "https://huggingface.co/datasets/sweetspot000/tqa-benchmark/resolve/main/maps.parquet",
+      "contentUrl": "https://huggingface.co/datasets/anonymous1ads34/STRIDE-Bench/blob/main/maps.parquet",
       "encodingFormat": "application/x-parquet",
       "sha256": "1a15c3423dba429e9c805c05eb4afb42525efacce7931dd1991a05664cc0c6c4",
       "contentSize": "7735446 B"

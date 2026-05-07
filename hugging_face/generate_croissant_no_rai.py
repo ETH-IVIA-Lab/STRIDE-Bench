@@ -25,7 +25,7 @@ from pathlib import Path
 
 import pyarrow.parquet as pq
 
-DEFAULT_REPO = "sweetspot000/tqa-benchmark"
+DEFAULT_REPO = " 0/ stride-benchmark"
 DATA_DIR = Path("hugging_face/data")
 OUT_DIR = Path("hugging_face/croissant")
 
@@ -216,7 +216,7 @@ def build_benchmark(repo: str, jsonl_path: Path) -> dict:
             "Behavioral evaluation specs for the STRIDE-Bench crowd trajectory benchmark. "
             "Each row is one scene with a natural-language scenario description and a "
             "decomposition into behavioral evaluation questions (Trajectory Question "
-            "Answering / TQA), each grounded in one or more measurement functions with "
+            "Answering /  stride), each grounded in one or more measurement functions with "
             "expected value ranges and tolerances."
         ),
         repo=repo,
