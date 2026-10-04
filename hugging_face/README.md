@@ -195,7 +195,7 @@ Each file is exposed as a separate config. Load whichever you need:
 ```python
 from datasets import load_dataset
 
-REPO = "anonymous1ads34/STRIDE-Bench"
+REPO = "eth-ivia-lab/STRIDE-Bench"
 
 benchmark = load_dataset(REPO, "benchmark", split="train")
 scenes    = load_dataset(REPO, "scenes",    split="train")
